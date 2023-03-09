@@ -48,15 +48,17 @@ def solve_deaton_infty(par):
     sol.delta = 2000
 
     while (par.max_iter>= sol.it and par.tol<sol.delta):
-        
+        sol.it = sol.it + 1
         V0 = sol.V.copy()
-        #This time we use scipy's interpolate function instead of numpy's
-        #Scipy's interpolater allows for extrapolation outside the grid
-        interp = interpolate.interp1d(par.grid_W,V0, bounds_error=False, fill_value = "extrapolate")
-
+        interp = interpolate.interp1d(par.grid_W,V0, bounds_error=False, fill_value = "extrapolate") #Use this instead of np.interp, because it can extrapolate outside grid
+        
         for iw,w in enumerate(par.grid_W):
-            #fill in
-            #Hint: Similar to Exercise_6
+            c = w*par.grid_w
+            w_c = w - c
+            EV_next = 0
+                for
+            
+              
             
             
             

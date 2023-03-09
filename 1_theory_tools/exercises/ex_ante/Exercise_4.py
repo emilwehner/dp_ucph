@@ -10,7 +10,7 @@ def solve_consumption_uncertainty(par):
     
     # consumption grid as a share of available resources
     grid_C = np.linspace(0.0,1.0,par.num_C)
-    
+   
     # Loop over periods
     for t in range(par.T-1, -1, -1):  #from period T-1, until period 0, backwards
         # Maximum cake size grows as t grows due to shocks so  grid depends on t 
@@ -24,11 +24,13 @@ def solve_consumption_uncertainty(par):
             EV_next = 0
         
             if t<par.T-1:
-                
-                #Fill in
-                # Hint: Loop through shocks
-                #       Interpolate value function for each shock
-                #       Add weighted contribution to expectation
+                for k in range(par.K):
+                    weight = par.pi[k]
+                    eps = par.eps[k]
+                    EV_next += weight*par.beta*np.interp(w_c+eps, sol.grid_W[:,t+1], sol.V[:,t+1])
+
+                    
+           
                 
             V_guess = np.sqrt(c)+par.beta*EV_next
             index = np.argmax(V_guess)
