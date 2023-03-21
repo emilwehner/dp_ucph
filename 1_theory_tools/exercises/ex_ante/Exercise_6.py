@@ -35,7 +35,6 @@ def solve_consumption_deaton(par):
                     w_next = par.R*w_c+eps
                     # expected value
                     EV_next +=weight*np.interp(w_next,sol.grid_W[:,t+1],sol.V[:,t+1])
-                    
             V_guess = util(c,par)+par.beta*EV_next
             index = np.argmax(V_guess)
             sol.C[iw,t] = c[index]
